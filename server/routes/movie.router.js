@@ -3,9 +3,9 @@ const router = express.Router();
 const pool = require("../modules/pool");
 
 router.get("/", (req, res) => {
-  const queryText = 'SELECT * FROM "movies";';
+  const sqlText = 'SELECT * FROM "movies";';
   pool
-    .query(queryText)
+    .query(sqlText)
     .then((result) => {
       res.send(result.rows);
     })
