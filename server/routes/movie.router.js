@@ -7,10 +7,31 @@ router.get("/", (req, res) => {
   pool
     .query(sqlText)
     .then((result) => {
+      console.log("rows" + result.rows);
       res.send(result.rows);
     })
     .catch((error) => {
       console.log("Error fetching movies from db: ", error);
+      res.sendStatus(500);
+    });
+});
+
+router.get("/:id", (req, res) => {
+  let id = req.params.id;
+  console.log(id);
+  // const sqlText =
+  //   "SELECT title, poster, description, name  FROM movie_genre JOIN movies ON movies.id = movie_genre.movies_id JOIN genres ON movie_genre.genres_id = genres.id WHERE movies.id = $1";
+  const sqlText =
+    "SELECT title, poster, description, name  FROM movie_genre JOIN movies ON movies.id = movie_genre.movies_id WHERE movies.id = $1";
+  pool
+    .query(sqlText, [id])
+    .then((result) => {
+      // console.log(result.rows[0]);
+      console.log(result);
+      res.send(result.rows[0]);
+    })
+    .catch((error) => {
+      console.log("Error getting details from db in get router: ", error);
       res.sendStatus(500);
     });
 });
