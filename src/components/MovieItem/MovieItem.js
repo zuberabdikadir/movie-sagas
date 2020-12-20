@@ -33,7 +33,7 @@ class MovieItem extends Component {
         <img
           src={this.props.movie.poster}
           alt={this.props.movie.title}
-          onClick={() => this.getDetails(this.props.movie.id)}
+          onClick={() => this.props.getDetails(this.props.movie.id)}
         />
         <GridListTileBar
           title={this.props.movie.title}
