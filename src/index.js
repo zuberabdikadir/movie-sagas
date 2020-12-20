@@ -9,13 +9,16 @@ import { Provider } from "react-redux";
 import logger from "redux-logger";
 // Import saga middleware
 import createSagaMiddleware from "redux-saga";
-import { takeEvery, put } from "redux-saga/effects";
+import { takeEvery, put, all } from "redux-saga/effects";
 import axios from "axios";
 
 // Create the rootSaga generator function
 function* rootSaga() {
-  yield takeEvery("FETCH_MOVIE", fetchMovie);
-  yield takeEvery("GET_DETAILS", getDetails);
+  yield all([
+    yield takeEvery("FETCH_MOVIES", fetchMovie),
+    yield takeEvery("GET_DETAILS", getDetails),
+    yield takeEvery("FETCH_GENRES", getGenres),
+  ]);
 }
 
 // Create sagaMiddleware
@@ -23,6 +26,7 @@ const sagaMiddleware = createSagaMiddleware();
 
 // GET Saga
 function* fetchMovie() {
+  console.log("index fetch movie");
   try {
     const response = yield axios.get("/api/movie");
     yield put({ type: "SET_MOVIES", payload: response.data });
@@ -36,6 +40,14 @@ function* getDetails(action) {
     yield put({ type: "SET_DETAILS", payload: response.data });
   } catch (error) {
     console.log("error getting movie description", error);
+  }
+}
+function* getGenres() {
+  try {
+    const response = yield axios.get("/api/genre");
+    yield put({ type: "SET_GENRES", payload: response.data });
+  } catch (error) {
+    console.log("error getting genre description", error);
   }
 }
 
