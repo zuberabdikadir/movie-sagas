@@ -15,19 +15,25 @@ class App extends Component {
           <div>
             <ul>
               <li>
-                <Link to="/">Home</Link>
+                <Link to="/" replace>
+                  Home
+                </Link>
               </li>
               <li>
-                <Link to="/details">Details</Link>
+                <Link to="/details" replace>
+                  Details
+                </Link>
               </li>
               <li>
-                <Link to="/add-movie">Add Movie</Link>
+                <Link to="/add-movie" replace>
+                  Add Movie
+                </Link>
               </li>
             </ul>
           </div>
           <Route exact path="/" component={MovieList} />
-          <Route path="/details" component={Details} />
-          <Route path="/add-movie" component={AddMovie} />
+          <Route exact path="/details" component={Details} />
+          <Route exact path="/add-movie" component={AddMovie} />
         </Router>
       </div>
     );
