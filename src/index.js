@@ -35,8 +35,9 @@ function* fetchMovie() {
   }
 }
 function* getDetails(action) {
+  console.log("index fetch details");
   try {
-    const response = yield axios.get("/api/movie" + action.payload);
+    const response = yield axios.get("/api/movie/" + action.payload);
     yield put({ type: "SET_DETAILS", payload: response.data });
   } catch (error) {
     console.log("error getting movie description", error);

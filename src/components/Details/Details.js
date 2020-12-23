@@ -1,24 +1,5 @@
 import React, { Component } from "react";
-import {
-  Card,
-  CardContent,
-  Typography,
-  CardMedia,
-  CardActionArea,
-  CardActions,
-  Button,
-} from "@material-ui/core";
-import { withStyles } from "@material-ui/core";
 import { connect } from "react-redux";
-
-const styles = {
-  card: {
-    maxWidth: 345,
-  },
-  media: {
-    height: 140,
-  },
-};
 
 class Details extends Component {
   componentDidMount() {
@@ -26,32 +7,19 @@ class Details extends Component {
   }
 
   render() {
-    const { classes } = this.props;
     return (
       <>
-        {JSON.stringify(this.props.reduxState.details)}
-        <Card className={classes.card}>
-          <CardActionArea>
-            <CardMedia
-              className={classes.media}
-              image={this.props.reduxState.details.poster}
-              alt={this.props.reduxState.details.title}
-            />
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="h2">
-                {this.props.reduxState.details.title}
-              </Typography>
-              <Typography component="p">
-                {this.props.reduxState.details.description}
-              </Typography>
-            </CardContent>
-          </CardActionArea>
-          <CardActions>
-            <Button onClick={(event) => this.props.history.push("/")}>
-              Back to MovieList
-            </Button>
-          </CardActions>
-        </Card>
+        {/* {JSON.stringify(this.props.reduxState.details)} */}
+        <img
+          src={this.props.reduxState.details.poster}
+          alt={this.props.reduxState.details.title}
+        />
+        <h2>{this.props.reduxState.details.title}</h2>
+        <p>{this.props.reduxState.details.description}</p>
+        <p>{this.props.reduxState.details.name}</p>
+        <button onClick={(event) => this.props.history.push("/")}>
+          Back to MovieList
+        </button>
       </>
     );
   }
@@ -59,4 +27,4 @@ class Details extends Component {
 const mapReduxStateToProps = (reduxState) => ({
   reduxState,
 });
-export default withStyles(styles)(connect(mapReduxStateToProps)(Details));
+export default connect(mapReduxStateToProps)(Details);

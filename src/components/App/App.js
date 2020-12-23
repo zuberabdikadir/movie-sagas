@@ -14,7 +14,7 @@ class App extends Component {
         <Router>
           <div>
             <ul>
-              <li>
+              {/* <li>
                 <Link to="/" replace>
                   Home
                 </Link>
@@ -23,7 +23,7 @@ class App extends Component {
                 <Link to="/details" replace>
                   Details
                 </Link>
-              </li>
+              </li> */}
               <li>
                 <Link to="/add-movie" replace>
                   Add Movie

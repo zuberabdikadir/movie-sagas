@@ -3,7 +3,7 @@ const router = express.Router();
 const pool = require("../modules/pool");
 
 router.get("/", (req, res) => {
-  const sqlText = 'SELECT * FROM "movies";';
+  const sqlText = `SELECT * FROM "movies";`;
   pool
     .query(sqlText)
     .then((result) => {
@@ -21,8 +21,10 @@ router.get("/:id", (req, res) => {
   console.log(id);
   // const sqlText =
   //   "SELECT title, poster, description, name  FROM movie_genre JOIN movies ON movies.id = movie_genre.movies_id JOIN genres ON movie_genre.genres_id = genres.id WHERE movies.id = $1";
-  const sqlText =
-    "SELECT title, poster, description, name  FROM movie_genre JOIN movies ON movies.id = movie_genre.movies_id WHERE movies.id = $1";
+  const sqlText = `SELECT title, poster, description, name  FROM movie_genre 
+  JOIN movies ON movies.id = movie_genre.movies_id 
+  JOIN genres ON movie_genre.genres_id = genres.id
+  WHERE movies.id = $1`;
   pool
     .query(sqlText, [id])
     .then((result) => {
@@ -58,7 +60,7 @@ router.post("/", (req, res) => {
 
       // Depending on how you make your junction table, this insert COULD change.
       const insertMovieGenreQuery = `
-      INSERT INTO "movies_genres" ("movies_id", "genres_id")
+      INSERT INTO "movie_genre" ("movies_id", "genres_id")
       VALUES  ($1, $2);
       `;
       // SECOND QUERY MAKES GENRE FOR THAT NEW MOVIE

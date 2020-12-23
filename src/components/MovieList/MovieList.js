@@ -1,23 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import MovieItem from "../MovieItem/MovieItem.js";
-
-import { GridList, ListSubheader } from "@material-ui/core";
-import { withStyles } from "@material-ui/core";
-
-const styles = (theme) => ({
-  root: {
-    display: "flex",
-    flexWrap: "wrap",
-    justifyContent: "space-around",
-    overflow: "hidden",
-    backgroundColor: theme.palette.background.paper,
-  },
-  gridList: {
-    width: "150",
-    height: "150",
-  },
-});
 
 class MovieList extends Component {
   componentDidMount() {
@@ -36,17 +18,22 @@ class MovieList extends Component {
   };
 
   render() {
-    const classes = this.props;
-
     return (
-      <div className={classes.root}>
-        <ListSubheader component="div">MovieList</ListSubheader>
-        <GridList cellHeight={180} className={classes.gridList}>
-          {this.props.reduxState.movies.map((film, index) => (
-            <MovieItem movie={film} getDetails={this.getDetails} />
-          ))}
-        </GridList>
-      </div>
+      <>
+        <h3 component="div">MovieList</h3>
+        {this.props.reduxState.movies.map((film, index) => {
+          return (
+            <div key={index}>
+              <h4>{film.title}</h4>
+              <img
+                src={film.poster}
+                alt="Poster"
+                onClick={() => this.getDetails(film.id)}
+              ></img>
+            </div>
+          );
+        })}
+      </>
     );
   }
 }
@@ -54,4 +41,4 @@ class MovieList extends Component {
 const mapReduxStateToProps = (reduxState) => ({
   reduxState,
 });
-export default withStyles(styles)(connect(mapReduxStateToProps)(MovieList));
+export default connect(mapReduxStateToProps)(MovieList);
