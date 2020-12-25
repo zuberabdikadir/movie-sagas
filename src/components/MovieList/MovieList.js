@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-
+import MovieItem from "../MovieItem/MovieItem";
+import "./MovieList.css";
 class MovieList extends Component {
   componentDidMount() {
     console.log("will fetch");
@@ -13,27 +14,16 @@ class MovieList extends Component {
     this.props.history.push("/details/");
   };
 
-  addFavorite = (film) => {
-    this.props.dispatch({ type: "SET_FAVORITE", payload: film });
-  };
-
   render() {
     return (
-      <>
-        <h3 component="div">MovieList</h3>
-        {this.props.reduxState.movies.map((film, index) => {
+      <div className="movie-container">
+        <h3>MovieList</h3>
+        {this.props.reduxState.movies.map((movie, index) => {
           return (
-            <div key={index}>
-              <h4>{film.title}</h4>
-              <img
-                src={film.poster}
-                alt="Poster"
-                onClick={() => this.getDetails(film.id)}
-              ></img>
-            </div>
+            <MovieItem key={index} movie={movie} getDetails={this.getDetails} />
           );
         })}
-      </>
+      </div>
     );
   }
 }

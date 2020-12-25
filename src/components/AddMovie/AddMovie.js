@@ -64,7 +64,6 @@ class AddMovie extends Component {
           />
           <br></br>
           <br></br>
-
           <input
             type="text"
             placeholder="url"
@@ -72,7 +71,6 @@ class AddMovie extends Component {
           />
           <br></br>
           <br></br>
-
           <textarea
             type="text"
             placeholder="description"
@@ -93,8 +91,10 @@ class AddMovie extends Component {
               ))}
             </Select>
           </FormControl>
-
+          <br></br>
+          <br></br>
           <button onClick={this.saveMovie}>add movie</button>
+          &nbsp; &nbsp;
           <button onClick={this.cancel}>cancel</button>
         </form>
       </div>
