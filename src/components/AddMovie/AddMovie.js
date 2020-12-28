@@ -5,6 +5,8 @@ import { withStyles } from "@material-ui/core/styles";
 import { FormControl } from "@material-ui/core";
 import InputLabel from "@material-ui/core/InputLabel";
 import Select from "@material-ui/core/Select";
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
 
 const styles = (theme) => ({
   container: {
@@ -56,31 +58,33 @@ class AddMovie extends Component {
     // const { classes } = this.props;
     return (
       <div>
-        <form>
-          <input
+        <form className="movie-input">
+          <TextField
+            label="Title"
+            variant="outlined"
             type="text"
-            placeholder="title"
             onChange={(event) => this.handleChange(event, "title")}
           />
-          <br></br>
-          <br></br>
-          <input
+          <br />
+          <TextField
+            variant="outlined"
+            className="movie-input"
             type="text"
-            placeholder="url"
+            label="Url"
             onChange={(event) => this.handleChange(event, "poster")}
           />
-          <br></br>
-          <br></br>
-          <textarea
+          <br />
+          <TextField
+            variant="outlined"
             type="text"
-            placeholder="description"
+            label="Description"
             onChange={(event) => this.handleChange(event, "description")}
           />
-          <br></br>
-          <br></br>
+          <br />
           <FormControl>
             <InputLabel>Genre</InputLabel>
             <Select
+              autoWidth="true"
               value={this.state.genre_id}
               onChange={(event) => this.handleChange(event, "genre_id")}
             >
@@ -91,11 +95,19 @@ class AddMovie extends Component {
               ))}
             </Select>
           </FormControl>
-          <br></br>
-          <br></br>
-          <button onClick={this.saveMovie}>add movie</button>
-          &nbsp; &nbsp;
-          <button onClick={this.cancel}>cancel</button>
+          <br />
+          <div className="submit-form-btns">
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={this.saveMovie}
+            >
+              add movie
+            </Button>
+            <Button variant="contained" color="primary" onClick={this.cancel}>
+              cancel
+            </Button>
+          </div>
         </form>
       </div>
     );

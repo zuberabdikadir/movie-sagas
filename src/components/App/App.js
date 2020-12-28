@@ -13,23 +13,9 @@ class App extends Component {
         <h1>Movies!</h1>
         <Router>
           <div>
-            <ul>
-              {/* <li>
-                <Link to="/" replace>
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link to="/details" replace>
-                  Details
-                </Link>
-              </li> */}
-              <li>
-                <Link to="/add-movie" replace>
-                  Add Movie
-                </Link>
-              </li>
-            </ul>
+            <Link to="/add-movie" replace>
+              Add Movie
+            </Link>
           </div>
           <Route exact path="/" component={MovieList} />
           <Route exact path="/details" component={Details} />

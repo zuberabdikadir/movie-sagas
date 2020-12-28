@@ -13,7 +13,7 @@ class MovieItem extends Component {
         </div>
         <div className="movie-over">
           <h2> Overview:</h2>
-          <p>{this.props.reduxState.details.description}</p>
+          <p>{this.props.movie.description}</p>
 
           <button onClick={() => this.props.getDetails(this.props.movie.id)}>
             More Details
