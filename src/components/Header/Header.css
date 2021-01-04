@@ -1,0 +1,8 @@
+.Cinema {
+  background-image: url("../Header/outdoor-cinema-drive-movie-theater-with-cars_107791-1037.jpg");
+  height: 150px;
+  padding: 100px;
+  width: 100%;
+  object-fit: cover;
+  object-position: left;
+}

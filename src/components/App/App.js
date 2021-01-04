@@ -4,13 +4,14 @@ import "./App.css";
 import AddMovie from "../AddMovie/AddMovie";
 import Details from "../Details/Details";
 import MovieList from "../MovieList/MovieList";
+import Header from "../Header/Header";
 
 class App extends Component {
   // Renders the entire app on the DOM
   render() {
     return (
       <div className="App">
-        <h1>Movies!</h1>
+        <Header />
         <Router>
           <div>
             <Link to="/add-movie" replace>
